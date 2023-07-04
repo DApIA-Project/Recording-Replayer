@@ -1,7 +1,7 @@
 import {Recording} from "./types";
 
-export function orderRecord(recording : Recording) : string[] {
-    let contentInArray : string[] = recording.content.trim().split('\n')
+export function orderRecord(recording: Recording): string[] {
+    let contentInArray: string[] = recording.content.trim().split('\n')
     const cleTri = (ligne: string): Date => {
 
         const parts = ligne.split(',')
@@ -14,7 +14,7 @@ export function orderRecord(recording : Recording) : string[] {
         }
     };
 
-    const contentOrderedInArray : string[] = [...contentInArray].sort((a,b) => cleTri(a).getTime() - cleTri(b).getTime())
+    const contentOrderedInArray: string[] = [...contentInArray].sort((a, b) => cleTri(a).getTime() - cleTri(b).getTime())
 
     return contentOrderedInArray
 }
@@ -35,17 +35,17 @@ function sleep(ms: number) {
     return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-export async function printRecordingByTime(orderedRecord: string[]) {
+export async function callbackRecordingByTime(orderedRecord: string[], callback: (message: string) => void) {
     for (let j = 0; j < orderedRecord.length; j++) {
-        const delay = j > 0 ? getDelay(orderedRecord[j-1], orderedRecord[j]) : 0;
+        const delay = j > 0 ? getDelay(orderedRecord[j - 1], orderedRecord[j]) : 0;
         await sleep(delay);
-        console.log(orderedRecord[j]);
+        callback(orderedRecord[j]);
     }
 }
 
-export function recordingReplayer(recordings : Recording[]) {
+export async function recordingReplayer(recordings: Recording[]) {
     for (const recording of recordings) {
-        let orderedRecordInArray : string[] = orderRecord(recording)
-        printRecordingByTime(orderedRecordInArray)
+        let orderedRecordInArray: string[] = orderRecord(recording)
+        await callbackRecordingByTime(orderedRecordInArray, console.log)
     }
 }

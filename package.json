@@ -10,9 +10,9 @@
   "scripts": {
     "tsc": "tsc",
     "build": "tsc",
-    "test": "ts-mocha -p ./test/tsconfig.json test/*.test.ts --timeout 10000",
+    "test": "ts-mocha -p ./test/tsconfig.json test/*.test.ts --timeout 20000",
     "test:coverage": "nyc --reporter=html ts-mocha -p ./test/tsconfig.json 'test/*.test.ts'",
-    "start" : "ts-node ./examples/main.ts"
+    "start": "ts-node ./examples/main.ts"
   },
   "repository": {
     "type": "git",
@@ -25,15 +25,19 @@
   },
   "homepage": "https://github.com/DApIA-Project/Recording-Replayer#readme",
   "devDependencies": {
+    "@types/chai": "^4.3.5",
     "@types/mocha": "^10.0.1",
     "@types/node": "^20.3.3",
+    "@types/sinon": "^10.0.15",
     "@types/supertest": "^2.0.12",
+    "chai": "^4.3.7",
     "mocha": "^10.2.0",
     "nyc": "^15.1.0",
     "ts-mocha": "^10.0.0",
     "ts-node": "^10.9.1"
   },
   "dependencies": {
-    "esbuild": "^0.18.11"
+    "esbuild": "^0.18.11",
+    "sinon": "^15.2.0"
   }
 }

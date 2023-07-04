@@ -12,4 +12,4 @@ let recordTest : Recording = { name : 'test.sbs', content : 'MSG,3,3,5022202,3b7
 
 recordsTest.push(recordTest)
 
-recordingReplayer(recordsTest)
+recordingReplayer(recordsTest).catch(e => console.log(e))
