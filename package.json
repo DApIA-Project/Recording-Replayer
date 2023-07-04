@@ -1,0 +1,39 @@
+{
+  "name": "recording-replayer",
+  "version": "1.0.0",
+  "description": "Lib that replays a recording according to time",
+  "main": "dist/src/index.js",
+  "types": "dist/src/types.d.ts",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "tsc": "tsc",
+    "build": "tsc",
+    "test": "ts-mocha -p ./test/tsconfig.json test/*.test.ts --timeout 10000",
+    "test:coverage": "nyc --reporter=html ts-mocha -p ./test/tsconfig.json 'test/*.test.ts'",
+    "start" : "ts-node ./examples/main.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DApIA-Project/Recording-Replayer.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DApIA-Project/Recording-Replayer/issues"
+  },
+  "homepage": "https://github.com/DApIA-Project/Recording-Replayer#readme",
+  "devDependencies": {
+    "@types/mocha": "^10.0.1",
+    "@types/node": "^20.3.3",
+    "@types/supertest": "^2.0.12",
+    "mocha": "^10.2.0",
+    "nyc": "^15.1.0",
+    "ts-mocha": "^10.0.0",
+    "ts-node": "^10.9.1"
+  },
+  "dependencies": {
+    "esbuild": "^0.18.11"
+  }
+}
