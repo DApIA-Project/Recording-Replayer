@@ -1,3 +1,4 @@
+
 import {Recording} from "./types";
 
 export function orderRecord(recording: Recording): string[] {
@@ -6,17 +7,14 @@ export function orderRecord(recording: Recording): string[] {
 
         const parts = ligne.split(',')
         if (ligne !== contentInArray[0]) {
-            const date = new Date(`${parts[8]} ${parts[9]}`);
-            return date;
+            return new Date(`${parts[8]} ${parts[9]}`);
         } else {
             const partsFirstLine = contentInArray[0].split(',')
             return new Date(`${partsFirstLine[8]} ${partsFirstLine[9]}`);
         }
     };
 
-    const contentOrderedInArray: string[] = [...contentInArray].sort((a, b) => cleTri(a).getTime() - cleTri(b).getTime())
-
-    return contentOrderedInArray
+    return [...contentInArray].sort((a, b) => cleTri(a).getTime() - cleTri(b).getTime())
 }
 
 function getDelay(previousLine: string, currentLine: string) {
@@ -35,17 +33,18 @@ function sleep(ms: number) {
     return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-export async function callbackRecordingByTime(orderedRecord: string[], callback: (message: string) => void) {
-    for (let j = 0; j < orderedRecord.length; j++) {
-        const delay = j > 0 ? getDelay(orderedRecord[j - 1], orderedRecord[j]) : 0;
+export async function callbackRecordingByTime(recording: Recording, callback: (message: string) => void) {
+    let previousMessage: string | null = null
+    for (const message of orderRecord(recording)) {
+        const delay = previousMessage ? getDelay(previousMessage, message) : 0;
         await sleep(delay);
-        callback(orderedRecord[j]);
+        callback(message);
+        previousMessage = message
     }
 }
 
-export async function recordingStreamer(recordings: Recording[]) {
+export async function streamRecording(recordings: Recording[]) {
     for (const recording of recordings) {
-        let orderedRecordInArray: string[] = orderRecord(recording)
-        await callbackRecordingByTime(orderedRecordInArray, console.log)
+        await callbackRecordingByTime(recording, console.log)
     }
 }

@@ -1,4 +1,4 @@
-import {recordingStreamer} from "../src";
+import {streamRecording} from "../src";
 import {Recording} from "../src/types";
 
 let recordsTest : Recording[] = []
@@ -12,4 +12,4 @@ let recordTest : Recording = { name : 'test.sbs', content : 'MSG,3,3,5022202,3b7
 
 recordsTest.push(recordTest)
 
-recordingStreamer(recordsTest).catch(e => console.log(e))
+streamRecording(recordsTest).catch(e => console.log(e))
