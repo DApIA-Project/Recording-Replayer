@@ -43,7 +43,7 @@ export async function callbackRecordingByTime(orderedRecord: string[], callback:
     }
 }
 
-export async function recordingReplayer(recordings: Recording[]) {
+export async function recordingStreamer(recordings: Recording[]) {
     for (const recording of recordings) {
         let orderedRecordInArray: string[] = orderRecord(recording)
         await callbackRecordingByTime(orderedRecordInArray, console.log)

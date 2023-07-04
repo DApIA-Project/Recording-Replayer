@@ -1,5 +1,5 @@
 {
-  "name": "recording-replayer",
+  "name": "recording-streamer",
   "version": "1.0.0",
   "description": "Lib that replays a recording according to time",
   "main": "dist/src/index.js",
@@ -16,14 +16,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/DApIA-Project/Recording-Replayer.git"
+    "url": "git+https://github.com/DApIA-Project/Recording-Streamer.git"
   },
   "author": "",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/DApIA-Project/Recording-Replayer/issues"
+    "url": "https://github.com/DApIA-Project/Recording-Streamer/issues"
   },
-  "homepage": "https://github.com/DApIA-Project/Recording-Replayer#readme",
+  "homepage": "https://github.com/DApIA-Project/Recording-Streamer#readme",
   "devDependencies": {
     "@types/chai": "^4.3.5",
     "@types/mocha": "^10.0.1",

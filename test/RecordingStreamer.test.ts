@@ -3,10 +3,9 @@ import assert from "assert";
 import {callbackRecordingByTime, orderRecord} from "../src";
 import {Recording} from "../src/types";
 import sinon, {SinonFakeTimers} from 'sinon'
-import {skip} from "node:test";
 
 
-describe('Recording Replayer', () => {
+describe('Recording Streamer', () => {
 
     describe('orderRecord', () => {
         it('return an array of string sorted by time logged', async () => {

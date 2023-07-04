@@ -1,1 +1,1 @@
-export * from './RecordingReplayer'
+export * from './RecordingStreamer'
