@@ -1,8 +1,7 @@
-import assert from 'assert'
-import { streamRecording } from '../../src'
-import { Recording } from '../../src/types'
-import { sleep } from '../../src/utils/sleep'
-import sinon = require('sinon')
+import assert from "assert";
+import { streamRecording } from "../../src";
+import { sleep } from "../../src/utils/sleep";
+import sinon = require("sinon");
 
 describe('streamRecording', () => {
   it('calls callback in delay', async () => {
