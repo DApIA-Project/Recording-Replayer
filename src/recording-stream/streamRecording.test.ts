@@ -2,32 +2,56 @@ import {describe} from "mocha";
 import {Recording} from "../types";
 import sinon from "sinon";
 import {streamRecording} from "./streamRecording";
+import {sleep} from "../utils/sleep";
+import assert from "assert";
 
 describe('streamRecording', () => {
-    let print = (message: string) => {
-        console.log(message)
-    }
+    it('calls callback in delay', async () => {
+        const recordingSize = 8
+        const delayBetweenMessages = 100
+        let content = ''
 
-    it.skip('return an array of string sorted by time logged', async () => {
-        const recordTest: Recording = {
-            name: 'test',
-            content:
-                'MSG,3,3,5022202,3b7b96,5022202,2022/07/02,12:47:36.000000,2022/07/02,12:47:23.000000,DRAG66,1850.0,120.0,311.2759420272517,43.40913391113281,1.724150901617006,128.0,,0,0,0,0\n' +
-                'MSG,3,3,5022202,3b7b96,5022202,2022/07/02,12:47:36.000000,2022/07/02,12:47:23.001,DRAG66,1850.0,120.0,311.2759420272517,43.40913391113281,1.724150901617006,128.0,,0,0,0,0\n' +
-                'MSG,3,3,5022202,3b7b96,5022202,2022/07/02,12:47:36.000000,2022/07/02,12:47:32.000000,DRAG66,1850.0,120.0,311.2759420272517,43.40913391113281,1.724150901617006,128.0,,0,0,0,0\n' +
-                'MSG,3,3,5022202,3b7b96,5022202,2022/07/02,12:47:36.000000,2022/07/02,12:47:36.000000,DRAG66,1850.0,120.0,311.2759420272517,43.40913391113281,1.724150901617006,128.0,,0,0,0,0\n' +
-                'MSG,3,3,5022202,3b7b96,5022202,2022/07/02,12:47:36.000000,2022/07/02,12:47:37.000000,DRAG66,1850.0,120.0,311.2759420272517,43.40913391113281,1.724150901617006,128.0,,0,0,0,0\n' +
-                'MSG,3,3,5022202,3b7b96,5022202,2022/07/02,12:47:36.000000,2022/07/02,12:47:39.000000,DRAG66,1850.0,120.0,311.2759420272517,43.40913391113281,1.724150901617006,128.0,,0,0,0,0\n' +
-                'MSG,3,3,5022202,3b7b96,5022202,2022/07/02,12:47:36.000000,2022/07/02,12:47:39.567,DRAG66,1850.0,120.0,311.2759420272517,43.40913391113281,1.724150901617006,128.0,,0,0,0,0\n'
+        for (let i = 0; i < recordingSize; i++) {
+            content += `MSG,3,3,5022202,3b7b96,5022202,2022/07/02,12:47:23.000,2022/07/02,12:47:23.${i * delayBetweenMessages},DRAG66,1850.0,120.0,311.2759,43.4091,1.72415,128.0,,,,,\n`
         }
 
-        const spy = sinon.spy(print)
-        streamRecording(recordTest, spy).then()
+        const recordTest: Recording = {
+            name: 'test',
+            content
+        }
 
+        const spy = sinon.spy(() => null)
+        streamRecording(recordTest, spy).then()
         sinon.assert.notCalled(spy)
 
+        await sleep(1)
         sinon.assert.calledOnce(spy)
+
+        for (let i = 1; i < recordingSize; i++) {
+            await sleep(delayBetweenMessages)
+            sinon.assert.callCount(spy, i + 1)
+        }
     })
 
+    it('calls callback with message', async () => {
+        const recordingSize = 8
+        const delayBetweenMessages = 100
+        let content: string[] = []
 
+        for (let i = 0; i < recordingSize; i++) {
+            content.push(`MSG,3,3,5022202,3b7b96,5022202,2022/07/02,12:47:23.000,2022/07/02,12:47:23.${i * delayBetweenMessages},DRAG66,1850.0,120.0,311.2759,43.4091,1.72415,128.0,,,,,`)
+        }
+
+        const recordTest: Recording = {
+            name: 'test',
+            content: content.join('\n')
+        }
+
+        const spy = sinon.spy(() => null)
+        await streamRecording(recordTest, spy)
+        assert.deepStrictEqual(
+            spy.getCalls().map((call) => call.args),
+            content.map(message => [message])
+        )
+    })
 })

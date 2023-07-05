@@ -10,7 +10,7 @@
   "scripts": {
     "tsc": "tsc",
     "build": "tsc",
-    "test": "ts-mocha -p ./test/tsconfig.json test/*.test.ts --timeout 20000",
+    "test": "ts-mocha -p ./tsconfig.json ./src/**/*.test.ts",
     "test:coverage": "nyc --reporter=html ts-mocha -p ./test/tsconfig.json 'test/*.test.ts'",
     "start": "ts-node ./examples/main.ts"
   },

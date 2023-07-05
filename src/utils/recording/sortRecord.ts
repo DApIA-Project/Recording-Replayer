@@ -3,7 +3,6 @@ import {Recording} from "../../types";
 export function sortRecord(recording: Recording): string[] {
     let contentInArray: string[] = recording.content.trim().split('\n')
     const cleTri = (ligne: string): Date => {
-
         const parts = ligne.split(',')
         if (ligne !== contentInArray[0]) {
             return new Date(`${parts[8]} ${parts[9]}`);
