@@ -10,7 +10,7 @@
   "scripts": {
     "tsc": "tsc",
     "watch": "tsc --watch",
-    "test": "ts-mocha -p ./tsconfig.json ./src/**/*.test.ts",
+    "test": "ts-mocha --config .mocharc-ts.json",
     "test:coverage": "nyc --reporter=html ts-mocha -p ./test/tsconfig.json 'test/*.test.ts'",
     "prettier-write": "prettier --write ."
   },

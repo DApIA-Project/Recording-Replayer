@@ -1,7 +1,6 @@
-import { describe } from 'mocha'
-import { Recording } from '../../types'
 import assert from 'assert'
-import { sortRecord } from './sortRecord'
+import { sortRecord } from '../../../src/utils/recording/sortRecord'
+import { Recording } from '../../../src/types'
 
 describe('sortRecord', () => {
   it('return an array of string sorted by time logged', async () => {

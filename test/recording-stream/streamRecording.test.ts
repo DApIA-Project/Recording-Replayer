@@ -1,9 +1,8 @@
-import { describe } from 'mocha'
-import { Recording } from '../types'
-import sinon from 'sinon'
-import { streamRecording } from './streamRecording'
-import { sleep } from '../utils/sleep'
 import assert from 'assert'
+import { streamRecording } from '../../src'
+import { Recording } from '../../src/types'
+import { sleep } from '../../src/utils/sleep'
+import sinon = require('sinon')
 
 describe('streamRecording', () => {
   it('calls callback in delay', async () => {

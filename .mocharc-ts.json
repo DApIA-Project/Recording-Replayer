@@ -1,0 +1,6 @@
+{
+  "extension": ["ts"],
+  "recursive": true,
+  "fullTrace": true,
+  "timeout": 10000
+}
