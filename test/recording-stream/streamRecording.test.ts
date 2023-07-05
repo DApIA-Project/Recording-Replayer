@@ -16,10 +16,7 @@ describe('streamRecording', () => {
       },DRAG66,1850.0,120.0,311.2759,43.4091,1.72415,128.0,,,,,\n`
     }
 
-    const recordTest: Recording = {
-      name: 'test',
-      content,
-    }
+    const recordTest = content
 
     const spy = sinon.spy(() => null)
     streamRecording(recordTest, spy).then()
@@ -47,10 +44,7 @@ describe('streamRecording', () => {
       )
     }
 
-    const recordTest: Recording = {
-      name: 'test',
-      content: content.join('\n'),
-    }
+    const recordTest = content.join('\n')
 
     const spy = sinon.spy(() => null)
     await streamRecording(recordTest, spy)
