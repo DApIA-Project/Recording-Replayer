@@ -9,10 +9,9 @@
   },
   "scripts": {
     "tsc": "tsc",
-    "build": "tsc",
+    "watch": "tsc --watch",
     "test": "ts-mocha -p ./tsconfig.json ./src/**/*.test.ts",
-    "test:coverage": "nyc --reporter=html ts-mocha -p ./test/tsconfig.json 'test/*.test.ts'",
-    "start": "ts-node ./examples/main.ts"
+    "test:coverage": "nyc --reporter=html ts-mocha -p ./test/tsconfig.json 'test/*.test.ts'"
   },
   "repository": {
     "type": "git",
