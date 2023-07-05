@@ -11,7 +11,8 @@
     "tsc": "tsc",
     "watch": "tsc --watch",
     "test": "ts-mocha -p ./tsconfig.json ./src/**/*.test.ts",
-    "test:coverage": "nyc --reporter=html ts-mocha -p ./test/tsconfig.json 'test/*.test.ts'"
+    "test:coverage": "nyc --reporter=html ts-mocha -p ./test/tsconfig.json 'test/*.test.ts'",
+    "prettier-write": "prettier --write ."
   },
   "repository": {
     "type": "git",
@@ -37,6 +38,8 @@
   },
   "dependencies": {
     "esbuild": "^0.18.11",
+    "husky": "^8.0.3",
+    "prettier": "^2.8.8",
     "sinon": "^15.2.0"
   }
 }
