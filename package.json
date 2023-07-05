@@ -9,6 +9,7 @@
   },
   "scripts": {
     "tsc": "tsc",
+    "build": "tsc",
     "watch": "tsc --watch",
     "test": "ts-mocha --config .mocharc-ts.json",
     "test:coverage": "nyc --reporter=html ts-mocha -p ./test/tsconfig.json 'test/*.test.ts'",
