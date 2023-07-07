@@ -30,12 +30,12 @@ recording-streamer --file "path/to/myfile.sbs" [--options]
 ```
 ## Options
 
-| option         | type    | mandatory | example                     |
-|----------------|---------|-----------|-----------------------------|
-| --file         | string  | yes       | --file "path/to/myfile.sbs" |
-| --print or --p | boolean | default   | --print 1                   |
-| --http         | boolean | no        | --http 1                    |
-| --url          | string  | no        | --url "URL"                 |
+| option        | type    | mandatory | example                 |
+|---------------|---------|-----------|-------------------------|
+| --file        | string  | yes       | --file "path/to/myfile.sbs" |
+| --print or -p | boolean | default   | --print                 |
+| --http        | boolean | no        | --http                  |
+| --url         | string  | no        | --url "URL"             |
 
 
 
