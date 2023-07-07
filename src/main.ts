@@ -1,3 +1,4 @@
+#!/usr/bin/env ts-node
 import { streamRecording } from "./recording-stream/streamRecording";
 import fs from "fs";
 import commandLineArgs from "command-line-args";

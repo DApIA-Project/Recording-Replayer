@@ -3,7 +3,7 @@
 All notable changes to this project will be documented in this file.
 
 
-## [Unreleased](https://github.com/DApIA-Project/Recording-Streamer/compare/v1.0.1...main)
+## [Unreleased](https://github.com/DApIA-Project/Recording-Streamer/compare/v1.1.0...main)
 
 ### Info
 
@@ -16,6 +16,12 @@ All notable changes to this project will be documented in this file.
 ### Removed
 
 ### Fixed
+
+## [v1.1.0](https://github.com/DApIA-Project/Recording-Streamer/compare/v1.0.0...v1.1.0)
+
+### Added
+
+- Command line `recording-streamer`
 
 
 ## [v1.0.0](https://github.com/DApIA-Project/Recording-Streamer/compare/old...new)

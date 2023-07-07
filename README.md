@@ -18,7 +18,24 @@ In your `package.json`, add the following:
 ```json
 {
   "dependencies": {
-    "@dapia-project/recording-streamer" : "^1.0.0"
+    "@dapia-project/recording-streamer" : "^1.1.0"
   }
 }
 ```
+
+## Initialization
+
+```shell
+recording-streamer --file "path/to/myfile.sbs" [--options]
+```
+## Options
+
+| option         | type    | mandatory | example                     |
+|----------------|---------|-----------|-----------------------------|
+| --file         | string  | yes       | --file "path/to/myfile.sbs" |
+| --print or --p | boolean | default   | --print 1                   |
+| --http         | boolean | no        | --http 1                    |
+| --url          | string  | no        | --url "URL"                 |
+
+
+
