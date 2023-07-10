@@ -8,23 +8,22 @@ export async function streamRecording(
   recordingContent: string,
   callback: MessageCallback,
   print : boolean,
-  http : boolean,
-  url : boolean
+  url : string | null
 ): Promise<void> {
   let previousMessage: string | null = null
   for (const message of sortRecordByDate(recordingContent)) {
     const delay = previousMessage ? getDelay(previousMessage, message) : 0
     await sleep(delay)
-      if(!print && !http && !url){
+      if(!print && (url == null)){
           print=true
       }
 
       if(print){
           callback(message)
       }
-      if (http) {
+      if (url != null) {
           try {
-              await axios.post('http://localhost:3001/recording/stream', { message });
+              await axios.post(url, { message });
               console.log('Message envoyé au serveur avec succès');
           } catch (error) {
               console.error('Erreur lors de l\'envoi du message via HTTP :', error);

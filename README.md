@@ -7,8 +7,9 @@ Allows you to sort the messages of a recording according to time as well as to s
 
 ### Via NPM
 
+It is necessary to install this library globally to use it.
 ```console
-npm i @dapia-project/recording-streamer
+npm i -g @dapia-project/recording-streamer
 ```
 
 ### By updating package.json
@@ -18,7 +19,7 @@ In your `package.json`, add the following:
 ```json
 {
   "dependencies": {
-    "@dapia-project/recording-streamer" : "^1.1.0"
+    "@dapia-project/recording-streamer" : "^1.2.0"
   }
 }
 ```
@@ -34,7 +35,6 @@ recording-streamer --file "path/to/myfile.sbs" [--options]
 |---------------|---------|-----------|-------------------------|
 | --file        | string  | yes       | --file "path/to/myfile.sbs" |
 | --print or -p | boolean | default   | --print                 |
-| --http        | boolean | no        | --http                  |
 | --url         | string  | no        | --url "URL"             |
 
 

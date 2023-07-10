@@ -17,6 +17,16 @@ All notable changes to this project will be documented in this file.
 
 ### Fixed
 
+## [v1.2.0](https://github.com/DApIA-Project/Recording-Streamer/compare/v1.1.0...v1.2.0)
+
+### Added
+
+- Ability to send messages to an URL with the `--url` option
+
+### Removed
+
+- `--http` option
+
 ## [v1.1.0](https://github.com/DApIA-Project/Recording-Streamer/compare/v1.0.0...v1.1.0)
 
 ### Added
