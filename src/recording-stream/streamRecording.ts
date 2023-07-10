@@ -8,12 +8,18 @@ export async function streamRecording(
   recordingContent: string,
   callback: MessageCallback,
   print : boolean,
-  url : string | null
+  url : string | null,
+  speed : number | null
 ): Promise<void> {
   let previousMessage: string | null = null
   for (const message of sortRecordByDate(recordingContent)) {
     const delay = previousMessage ? getDelay(previousMessage, message) : 0
-    await sleep(delay)
+      if(speed == null || speed<=0){
+          await sleep(delay)
+      }else{
+          await sleep(delay/speed)
+      }
+
       if(!print && (url == null)){
           print=true
       }

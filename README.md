@@ -19,7 +19,7 @@ In your `package.json`, add the following:
 ```json
 {
   "dependencies": {
-    "@dapia-project/recording-streamer" : "^1.2.0"
+    "@dapia-project/recording-streamer" : "^1.3.0"
   }
 }
 ```
@@ -31,11 +31,25 @@ recording-streamer --file "path/to/myfile.sbs" [--options]
 ```
 ## Options
 
-| option        | type    | mandatory | example                 |
-|---------------|---------|-----------|-------------------------|
+| option        | type    | mandatory | example                     |
+|---------------|---------|-----------|-----------------------------|
 | --file        | string  | yes       | --file "path/to/myfile.sbs" |
-| --print or -p | boolean | default   | --print                 |
-| --url         | string  | no        | --url "URL"             |
+| --print or -p | boolean | default   | --print                     |
+| --url         | string  | no        | --url "URL"                 |
+| --speed       | number  | no        | --speed 2                   |
 
+### --file "file"
 
+This option, which must be present, allows you to specify the file (record) to read.
 
+### --print or -p
+
+This option is enabled by default if no other is enabled. It is used to display in the console each message of the record.
+
+### --url "URL"
+
+This option contains a string which must be a URL.
+
+### --speed NUMBER
+
+This option contains a number, which is a record playback speed multiplier. Example: --speed 2 reads the record twice as fast.

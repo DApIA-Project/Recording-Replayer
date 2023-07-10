@@ -9,10 +9,11 @@ try {
   const options = commandLineArgs([
     { name: "file", type: String },
     { name: "print", alias: "p", type: Boolean },
-    { name: "url", type: String }
+    { name: "url", type: String },
+    {name : "speed", type: Number}
   ]);
 
-  const { file,print,url } = options;
+  const { file,print,url,speed } = options;
 
   if(!file) {
     console.error('`--file` arg is mandatory');
@@ -22,7 +23,7 @@ try {
     fs.promises
         .readFile(file)
         .then(async (fileContent) => {
-          await streamRecording(fileContent.toString(), console.log,print,url);
+          await streamRecording(fileContent.toString(), console.log,print,url,speed);
           process.exit(1);
         })
         .catch(() => console.error(`Unable to read file ${file}`));
