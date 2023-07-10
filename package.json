@@ -17,7 +17,7 @@
     "test": "ts-mocha --config .mocharc-ts.json",
     "test:coverage": "nyc --reporter=html ts-mocha -p ./test/tsconfig.json 'test/*.test.ts'",
     "prettier-write": "prettier --write .",
-    "start": "ts-node ./src/main.ts --file \"C:\\Users\\morga\\Documents\\DapIA\\Fichiers SBS\\zigzag2.sbs\" --url \"http://localhost:3001/recording/stream\" --time 2"
+    "start": "ts-node ./src/main.ts --file \"C:\\Users\\morga\\Documents\\DapIA\\Fichiers SBS\\zigzag2.sbs\" --url \"http://localhost:3001/recording/stream\" --speed 2"
   },
   "repository": {
     "type": "git",
