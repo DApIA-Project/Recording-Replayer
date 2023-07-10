@@ -17,6 +17,13 @@ All notable changes to this project will be documented in this file.
 
 ### Fixed
 
+## [v1.3.0](https://github.com/DApIA-Project/Recording-Streamer/compare/v1.2.0...v1.3.0)
+
+### Added
+
+- Ability to change the speed of sending messages with the `--speed` option
+
+
 ## [v1.2.0](https://github.com/DApIA-Project/Recording-Streamer/compare/v1.1.0...v1.2.0)
 
 ### Added
