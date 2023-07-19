@@ -1,6 +1,6 @@
 {
   "name": "@dapia-project/recording-streamer",
-  "version": "1.3.0",
+  "version": "2.0.0",
   "description": "Lib that replays a recording according to time",
   "main": "dist/main.js",
   "types": "dist/src/types.d.ts",
@@ -17,7 +17,7 @@
     "test": "ts-mocha --config .mocharc-ts.json",
     "test:coverage": "nyc --reporter=html ts-mocha -p ./test/tsconfig.json 'test/*.test.ts'",
     "prettier-write": "prettier --write .",
-    "start": "ts-node ./src/main.ts --file \"C:\\Users\\morga\\Documents\\DapIA\\Fichiers SBS\\zigzag2.sbs\" --url \"http://localhost:3001/recording/stream\" --speed 2"
+    "start": "ts-node ./src/main.ts --file \"C:\\Users\\morga\\Documents\\DapIA\\Fichiers SBS\\zigzag2.sbs\" --url \"http://localhost:3002/send-message\" --speed 2"
   },
   "repository": {
     "type": "git",
@@ -42,11 +42,13 @@
     "ts-node": "^10.9.1"
   },
   "dependencies": {
+    "@openapitools/openapi-generator-cli": "^2.7.0",
     "@types/command-line-args": "^5.2.0",
     "axios": "^1.4.0",
     "command-line-args": "^5.2.1",
     "esbuild": "^0.18.11",
     "husky": "^8.0.3",
+    "logging": "^3.3.0",
     "node-fetch": "^3.3.1",
     "prettier": "^2.8.8",
     "sinon": "^15.2.0"

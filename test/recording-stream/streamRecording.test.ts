@@ -1,55 +1,60 @@
-import assert from "assert";
-import { streamRecording } from "../../src";
-import { sleep } from "../../src/utils/sleep";
-import sinon = require("sinon");
+import assert from 'assert'
+import {streamRecording} from '../../src'
+import {sleep} from '../../src/utils/sleep'
+import {SinonSpy} from "sinon";
+import sinon = require('sinon');
 
 describe('streamRecording', () => {
-  it('calls callback in delay', async () => {
-    const recordingSize = 8
-    const delayBetweenMessages = 100
-    let content = ''
+    let spy: SinonSpy
+    beforeEach(() => {
+        spy = sinon.spy(async () => {
+        });
+    })
 
-    for (let i = 0; i < recordingSize; i++) {
-      content += `MSG,3,3,5022202,3b7b96,5022202,2022/07/02,12:47:23.000,2022/07/02,12:47:23.${
-        i * delayBetweenMessages
-      },DRAG66,1850.0,120.0,311.2759,43.4091,1.72415,128.0,,,,,\n`
-    }
+    it('calls callback in delay', async () => {
+        const recordingSize = 8
+        const delayBetweenMessages = 100
+        let content = ''
 
-    const recordTest = content
+        for (let i = 0; i < recordingSize; i++) {
+            content += `MSG,3,3,5022202,3b7b96,5022202,2022/07/02,12:47:23.000,2022/07/02,12:47:23.${
+                i * delayBetweenMessages
+            },DRAG66,1850.0,120.0,311.2759,43.4091,1.72415,128.0,,,,,\n`
+        }
 
-    const spy = sinon.spy(() => null)
-    streamRecording(recordTest, spy,true,null, null).then()
-    sinon.assert.notCalled(spy)
+        const recordTest = content
 
-    await sleep(1)
-    sinon.assert.calledOnce(spy)
+        streamRecording(recordTest, spy, null).then()
+        sinon.assert.notCalled(spy)
 
-    for (let i = 1; i < recordingSize; i++) {
-      await sleep(delayBetweenMessages)
-      sinon.assert.callCount(spy, i + 1)
-    }
-  })
+        await sleep(1)
+        sinon.assert.calledOnce(spy)
 
-  it('calls callback with message', async () => {
-    const recordingSize = 8
-    const delayBetweenMessages = 100
-    let content: string[] = []
+        for (let i = 1; i < recordingSize; i++) {
+            await sleep(delayBetweenMessages)
+            sinon.assert.callCount(spy, i + 1)
+        }
+    })
 
-    for (let i = 0; i < recordingSize; i++) {
-      content.push(
-        `MSG,3,3,5022202,3b7b96,5022202,2022/07/02,12:47:23.000,2022/07/02,12:47:23.${
-          i * delayBetweenMessages
-        },DRAG66,1850.0,120.0,311.2759,43.4091,1.72415,128.0,,,,,`
-      )
-    }
+    it('calls callback with message', async () => {
+        const recordingSize = 8
+        const delayBetweenMessages = 100
+        let content: string[] = []
 
-    const recordTest = content.join('\n')
+        for (let i = 0; i < recordingSize; i++) {
+            content.push(
+                `MSG,3,3,5022202,3b7b96,5022202,2022/07/02,12:47:23.000,2022/07/02,12:47:23.${
+                    i * delayBetweenMessages
+                },DRAG66,1850.0,120.0,311.2759,43.4091,1.72415,128.0,,,,,`
+            )
+        }
 
-    const spy = sinon.spy(() => null)
-    await streamRecording(recordTest, spy,true,null,null)
-    assert.deepStrictEqual(
-      spy.getCalls().map((call) => call.args),
-      content.map((message) => [message])
-    )
-  })
+        const recordTest = content.join('\n')
+
+        await streamRecording(recordTest, spy, null)
+        assert.deepStrictEqual(
+            spy.getCalls().map((call) => call.args),
+            content.map((message) => [message])
+        )
+    })
 })

@@ -1,38 +1,40 @@
 #!/usr/bin/env node
-import { streamRecording } from "./recording-stream/streamRecording";
-import fs from "fs";
-import commandLineArgs from "command-line-args";
-
-
+import {streamRecording} from './recording-stream/streamRecording'
+import fs from 'fs'
+import commandLineArgs from 'command-line-args'
+import axios from "axios";
+import {MessageCallback} from "./types";
 
 try {
-  const options = commandLineArgs([
-    { name: "file", type: String },
-    { name: "print", alias: "p", type: Boolean },
-    { name: "url", type: String },
-    {name : "speed", type: Number}
-  ]);
+    const options = commandLineArgs([
+        {name: 'file', type: String},
+        {name: 'url', type: String},
+        {name: 'speed', type: Number},
+    ])
 
-  const { file,print,url,speed } = options;
+    const {file, url, speed} = options
 
-  if(!file) {
-    console.error('`--file` arg is mandatory');
-    process.exit(1);
-  }
+    if (!file) {
+        console.error('`--file` arg is mandatory')
+        process.exit(1)
+    }
+
+    let callback: MessageCallback = url
+        ? message => axios.post(url, {message})
+        : async message => {console.log(message)}
 
     fs.promises
         .readFile(file)
         .then(async (fileContent) => {
-          await streamRecording(fileContent.toString(), console.log,print,url,speed);
-          process.exit(1);
+            await streamRecording(
+                fileContent.toString(),
+                callback,
+                speed
+            )
+            process.exit(1)
         })
-        .catch(() => console.error(`Unable to read file ${file}`));
-
-
-
-
-
+        .catch(() => console.error(`Unable to read file ${file}`))
 } catch (e: any) {
-  console.error(e.message);
-  process.exit(1);
+    console.error(e.message)
+    process.exit(1)
 }
