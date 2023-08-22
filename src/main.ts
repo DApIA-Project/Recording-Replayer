@@ -31,6 +31,7 @@ try {
                 callback,
                 speed
             )
+
             process.exit(1)
         })
         .catch(() => console.error(`Unable to read file ${file}`))

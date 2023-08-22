@@ -10,14 +10,18 @@ export async function streamRecording(
 ): Promise<void> {
 
     let previousMessage: string | null = null
-    for (const message of sortRecordByDateCSV(recordingContent)) {
+    for (const message of sortRecordByDate(recordingContent)) {
         const delay = previousMessage ? getDelay(previousMessage, message) : 0
         if (speed == undefined || speed <= 0) {
             await sleep(delay)
         } else {
             await sleep(delay / speed)
         }
-        await callback(message)
+        let resp = await callback(message)
+        if(resp != undefined){
+            console.log(resp.data.prediction)
+        }
+
         previousMessage = message
     }
 }

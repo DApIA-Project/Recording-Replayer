@@ -3,4 +3,4 @@ export type Recording = {
   content: string
 }
 
-export type MessageCallback = (message: string) => Promise<void>
+export type MessageCallback = (message: string) => Promise<any>
