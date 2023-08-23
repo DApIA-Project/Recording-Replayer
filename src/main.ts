@@ -3,7 +3,25 @@ import {streamRecording} from './recording-stream/streamRecording'
 import fs from 'fs'
 import commandLineArgs from 'command-line-args'
 import axios from "axios";
-import {MessageCallback} from "./types";
+import { AxiosCallback, ConsoleCallback } from "./types";
+
+async function doStreamRecording(callback : AxiosCallback | ConsoleCallback, file : string, speed : number){
+    fs.promises
+      .readFile(file)
+      .then(async (fileContent) => {
+          await streamRecording(
+            file,
+            fileContent.toString(),
+            callback,
+            speed
+          )
+
+          process.exit(1)
+      })
+      .catch(() => console.error(`Unable to read file ${file}`))
+}
+
+
 
 try {
     const options = commandLineArgs([
@@ -19,22 +37,15 @@ try {
         process.exit(1)
     }
 
-    let callback: MessageCallback = url
-        ? message => axios.post(url, {message})
-        : async message => {console.log(message)}
+    if(url){
+        let callback: AxiosCallback = message => axios.post(url, {message})
+        doStreamRecording(callback,file,speed)
+    }else{
+        let callback: ConsoleCallback = async message => {console.log(message)}
+        doStreamRecording(callback,file,speed)
+    }
 
-    fs.promises
-        .readFile(file)
-        .then(async (fileContent) => {
-            await streamRecording(
-                fileContent.toString(),
-                callback,
-                speed
-            )
 
-            process.exit(1)
-        })
-        .catch(() => console.error(`Unable to read file ${file}`))
 } catch (e: any) {
     console.error(e.message)
     process.exit(1)

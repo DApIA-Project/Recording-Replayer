@@ -3,4 +3,5 @@ export type Recording = {
   content: string
 }
 
-export type MessageCallback = (message: string) => Promise<any>
+export type AxiosCallback = (message: string) => Promise<{data : {message : string, prediction : string}}>
+export type ConsoleCallback = (message: string) => Promise<void>
