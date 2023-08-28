@@ -21,7 +21,7 @@ In your `package.json`, add the following:
 ```json
 {
   "dependencies": {
-    "@dapia-project/recording-streamer": "^2.0.0"
+    "@dapia-project/recording-streamer": "^2.1.0"
   }
 }
 ```
@@ -49,7 +49,7 @@ This option, which must be present, allows you to specify the file (record) to r
 
 ### --url "URL"
 
-This option contains a string which must be a URL.
+This option contains a string which must be a URL. When this option is used the file is converted to JSON on CSV template for ADSB.
 
 ### --speed NUMBER
 

@@ -24,7 +24,7 @@ describe('streamRecording', () => {
 
         const recordTest = content
 
-        streamRecording("test.sbs",recordTest, spy, undefined).then()
+        streamRecording("test.sbs",recordTest, spy, undefined,undefined).then()
         sinon.assert.notCalled(spy)
 
         await sleep(1)
@@ -51,7 +51,7 @@ describe('streamRecording', () => {
 
         const recordTest = content.join('\n')
 
-        await streamRecording("test.sbs",recordTest, spy, undefined)
+        await streamRecording("test.sbs",recordTest, spy, undefined,undefined)
         assert.deepStrictEqual(
             spy.getCalls().map((call) => call.args),
             content.map((message) => [message])

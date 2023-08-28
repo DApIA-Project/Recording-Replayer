@@ -5,7 +5,7 @@ import commandLineArgs from 'command-line-args'
 import axios from "axios";
 import { AxiosCallback, ConsoleCallback } from "./types";
 
-async function doStreamRecording(callback : AxiosCallback | ConsoleCallback, file : string, speed : number){
+async function doStreamRecording(callback : AxiosCallback | ConsoleCallback, file : string, speed : number, url : string){
     fs.promises
       .readFile(file)
       .then(async (fileContent) => {
@@ -13,7 +13,8 @@ async function doStreamRecording(callback : AxiosCallback | ConsoleCallback, fil
             file,
             fileContent.toString(),
             callback,
-            speed
+            speed,
+            url
           )
 
           process.exit(1)
@@ -39,10 +40,10 @@ try {
 
     if(url){
         let callback: AxiosCallback = message => axios.post(url, {message})
-        doStreamRecording(callback,file,speed)
+        doStreamRecording(callback,file,speed,url)
     }else{
         let callback: ConsoleCallback = async message => {console.log(message)}
-        doStreamRecording(callback,file,speed)
+        doStreamRecording(callback,file,speed,url)
     }
 
 
