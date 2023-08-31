@@ -16,6 +16,12 @@ All notable changes to this project will be documented in this file.
 
 ### Fixed
 
+## [v2.1.1](https://github.com/DApIA-Project/Recording-Streamer/compare/v2.1.0...v2.1.1)
+
+### Changed
+
+- Dependencies to DataConverter version
+
 ## [v2.1.0](https://github.com/DApIA-Project/Recording-Streamer/compare/v2.0.0...v2.1.0)
 
 ### Changed
