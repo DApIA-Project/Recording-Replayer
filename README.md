@@ -34,14 +34,13 @@ recording-streamer --file "path/to/myfile.sbs" [--options]
 
 ## Options
 
-| option        | type    | mandatory | example                     |
-| ------------- | ------- | --------- | --------------------------- |
-| --file        | string  | yes       | --file "path/to/myfile.sbs" |
-| --url         | string  | no        | --url "URL"                 |
-| --speed       | number  | no        | --speed 2                   |
+| option  | type   | mandatory | example                     |
+| ------- | ------ | --------- | --------------------------- |
+| --file  | string | yes       | --file "path/to/myfile.sbs" |
+| --url   | string | no        | --url "URL"                 |
+| --speed | number | no        | --speed 2                   |
 
 By default, the option print is enabled if no other is enabled. It is used to display in the console each message of the record.
-
 
 ### --file "file"
 

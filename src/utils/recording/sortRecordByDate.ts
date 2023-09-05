@@ -18,8 +18,8 @@ export function sortRecordByDateCSV(recordingContent: string): string[] {
   }
 
   const messages = recordingContent
-      .trim()
-      .split('\n')
-      .filter((message) => !isNaN(sortKey(message)))
+    .trim()
+    .split('\n')
+    .filter((message) => !isNaN(sortKey(message)))
   return messages.sort((a, b) => sortKey(a) - sortKey(b))
 }

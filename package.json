@@ -17,7 +17,7 @@
     "test": "ts-mocha --config .mocharc-ts.json",
     "test:coverage": "nyc --reporter=html ts-mocha -p ./test/tsconfig.json 'test/*.test.ts'",
     "prettier-write": "prettier --write .",
-    "start": "ts-node ./src/main.ts --file \"C:\\Users\\morga\\Documents\\Programmation\\Recording-Streamer\\temp\\2022_07_toulouse_SAMUCF_1h.csv\" --url \"http://localhost:3002/send-message\""
+    "start": "ts-node ./src/main.ts"
   },
   "repository": {
     "type": "git",
