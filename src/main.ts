@@ -33,7 +33,18 @@ try {
   }
 
   if (url) {
-    let callback: AxiosCallback = (message) => axios.post(url, { message })
+    let callback: AxiosCallback = async (message) => {
+      try {
+        return await axios.post(url, { message })
+      } catch (e) {
+        return {
+          data: {
+            message,
+            error: 'error_from_server',
+          },
+        }
+      }
+    }
     doStreamRecording(callback, file, speed, url).then()
   } else {
     let callback: ConsoleCallback = async (message) => {

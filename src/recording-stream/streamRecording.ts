@@ -21,9 +21,11 @@ async function doCallback(
   } else {
     await sleep(delay / speed)
   }
-  let resp = await callback(message)
-  if (resp != undefined) {
-    console.log(resp.data.prediction)
+  let result = await callback(message)
+  if (result?.data !== undefined) {
+    const { prediction, error } = result?.data
+    if (error) console.log(error)
+    else if (prediction) console.log(prediction)
   }
 
   return message

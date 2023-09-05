@@ -5,5 +5,5 @@ export type Recording = {
 
 export type AxiosCallback = (
   message: string
-) => Promise<{ data: { message: string; prediction: string } }>
+) => Promise<{ data: { message: string; prediction?: string; error?: string } }>
 export type ConsoleCallback = (message: string) => Promise<void>
