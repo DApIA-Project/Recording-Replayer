@@ -4,7 +4,7 @@ import { csvToJson, sbsToCsv } from '@dapia-project/data-converter/dist/src'
 
 export async function buildCsvJsonRecording(file: string): Promise<Recording> {
   const buffer = await fs.promises.readFile(file)
-  const extension = file.split('.')[-1]
+  const extension = file.split('.').slice(-1)[0]
   const recording: Recording = {
     name: file,
     messages: [],
