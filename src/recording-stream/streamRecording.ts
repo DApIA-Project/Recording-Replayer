@@ -1,74 +1,29 @@
-import {
-  sortRecordByDate,
-  sortRecordByDateCSV,
-} from '../utils/recording/sortRecordByDate'
 import { getDelay } from '../utils/recording/getDelay'
 import { sleep } from '../utils/sleep'
-import { AxiosCallback, ConsoleCallback } from '../types'
-import { convertCSVtoJSON } from '@dapia-project/data-converter/dist/src/CsvToJson'
-import { convertSBStoJSON } from '@dapia-project/data-converter/dist/src/SbsToJson'
-import { convertJSONtoCSV } from '@dapia-project/data-converter/dist/src/JsonToCsv'
+import { AxiosCallback, ConsoleCallback, Recording } from '../types'
+import { JsonMessage } from '@dapia-project/data-converter'
 
-async function doCallback(
-  previousMessage: string | null,
-  message: string,
-  speed: number | undefined,
-  callback: AxiosCallback | ConsoleCallback
-) {
-  const delay = previousMessage ? getDelay(previousMessage, message) : 0
-  if (speed == undefined || speed <= 0) {
-    await sleep(delay)
-  } else {
-    await sleep(delay / speed)
-  }
-  let result = await callback(message)
-  if (result?.data !== undefined) {
-    const { prediction, error } = result?.data
-    if (error) console.log(error)
-    else if (prediction) console.log(prediction)
-  }
-
-  return message
+type StreamRecordingOptions = {
+  speed?: number
 }
 
 export async function streamRecording(
-  file: string,
-  recordingContent: string,
+  recording: Recording,
   callback: AxiosCallback | ConsoleCallback,
-  speed: number | undefined,
-  url: string | undefined
+  { speed = 1 }: StreamRecordingOptions
 ): Promise<void> {
-  let previousMessage: string | null = null
+  if (speed <= 0) throw new Error('Speed cannot be negative or null')
 
-  if (file.endsWith('.csv')) {
-    const lines = recordingContent.split('\n')
-    const header = lines[0] + '\n'
-
-    for (let message of sortRecordByDateCSV(recordingContent)) {
-      if (url) {
-        message = header + message
-        message = convertCSVtoJSON(message)
-      }
-      previousMessage = await doCallback(
-        previousMessage,
-        message,
-        speed,
-        callback
-      )
+  let previousMessage: JsonMessage | null = null
+  for (const message of recording.messages) {
+    const delay = previousMessage ? getDelay(previousMessage, message) : 0
+    await sleep(delay / speed)
+    const result = await callback(message)
+    if (result?.data !== undefined) {
+      const { prediction, error } = result?.data
+      if (error) console.log(error)
+      else if (prediction) console.log(prediction)
     }
-  } else {
-    for (let message of sortRecordByDate(recordingContent)) {
-      if (url) {
-        message = convertSBStoJSON(message)
-        message = convertJSONtoCSV(message)
-        message = convertCSVtoJSON(message)
-      }
-      previousMessage = await doCallback(
-        previousMessage,
-        message,
-        speed,
-        callback
-      )
-    }
+    previousMessage = message
   }
 }

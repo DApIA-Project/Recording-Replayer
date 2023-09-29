@@ -1,9 +1,16 @@
+import { JsonMessage } from '@dapia-project/data-converter'
+
 export type Recording = {
   name: string
-  content: string
+  messages: JsonMessage[]
 }
 
-export type AxiosCallback = (
-  message: string
-) => Promise<{ data: { message: string; prediction?: string; error?: string } }>
-export type ConsoleCallback = (message: string) => Promise<void>
+export type ApiResponse = {
+  data: { message: JsonMessage; prediction?: string; error?: string }
+}
+
+export type AxiosCallback = (message: JsonMessage) => Promise<ApiResponse>
+
+export type ConsoleCallback = (message: JsonMessage) => Promise<void>
+
+export type StreamCallback = AxiosCallback | ConsoleCallback
