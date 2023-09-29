@@ -1,15 +1,15 @@
 import { Recording } from '../types'
 import fs from 'fs'
 import { csvToJson, sbsToCsv } from '@dapia-project/data-converter/dist/src'
+import { getExtension } from './getExtension'
 
 export async function buildCsvJsonRecording(file: string): Promise<Recording> {
   const buffer = await fs.promises.readFile(file)
-  const extension = file.split('.').slice(-1)[0]
   const recording: Recording = {
     name: file,
     messages: [],
   }
-  switch (extension) {
+  switch (getExtension(file)) {
     case 'csv':
       recording.messages = csvToJson(buffer.toString())
       break
