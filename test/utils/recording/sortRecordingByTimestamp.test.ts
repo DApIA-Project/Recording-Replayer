@@ -1,4 +1,4 @@
-import { sortRecordingByTimestamp } from '../../../src/utils/recording/sortRecordingByTimestamp'
+import { sortRecordingByTimestamp } from '../../../src/utils/sortRecordingByTimestamp'
 import assert from 'assert'
 
 describe('sortRecordingByTimestamp', () => {

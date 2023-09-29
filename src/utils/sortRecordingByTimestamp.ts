@@ -1,4 +1,4 @@
-import { Recording } from '../../types'
+import { Recording } from '../types'
 
 export function sortRecordingByTimestamp(recording: Recording): Recording {
   const messages = [...recording.messages]

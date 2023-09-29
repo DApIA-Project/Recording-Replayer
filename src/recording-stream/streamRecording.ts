@@ -1,8 +1,8 @@
-import { getDelay } from '../utils/recording/getDelay'
+import { getDelay } from '../utils/getDelay'
 import { sleep } from '../utils/sleep'
 import { AxiosCallback, ConsoleCallback, Recording } from '../types'
 import { JsonMessage } from '@dapia-project/data-converter'
-import { sortRecordingByTimestamp } from '../utils/recording/sortRecordingByTimestamp'
+import { sortRecordingByTimestamp } from '../utils/sortRecordingByTimestamp'
 
 type StreamRecordingOptions = {
   speed?: number
