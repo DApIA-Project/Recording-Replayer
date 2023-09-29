@@ -2,6 +2,7 @@ import { getDelay } from '../utils/recording/getDelay'
 import { sleep } from '../utils/sleep'
 import { AxiosCallback, ConsoleCallback, Recording } from '../types'
 import { JsonMessage } from '@dapia-project/data-converter'
+import { sortRecordingByTimestamp } from '../utils/recording/sortRecordingByTimestamp'
 
 type StreamRecordingOptions = {
   speed?: number
@@ -10,12 +11,13 @@ type StreamRecordingOptions = {
 export async function streamRecording(
   recording: Recording,
   callback: AxiosCallback | ConsoleCallback,
-  { speed = 1 }: StreamRecordingOptions
+  options: StreamRecordingOptions = {}
 ): Promise<void> {
+  const { speed = 1 } = options
   if (speed <= 0) throw new Error('Speed cannot be negative or null')
 
   let previousMessage: JsonMessage | null = null
-  for (const message of recording.messages) {
+  for (const message of sortRecordingByTimestamp(recording).messages) {
     const delay = previousMessage ? getDelay(previousMessage, message) : 0
     await sleep(delay / speed)
     const result = await callback(message)

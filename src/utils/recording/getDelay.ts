@@ -10,6 +10,8 @@ export function getDelay(
   )
     return 0
   return (
-    (currentMessage.timestamp as number) - (previousMessage.timestamp as number)
+    ((currentMessage.timestamp as number) -
+      (previousMessage.timestamp as number)) *
+    1000
   )
 }

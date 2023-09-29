@@ -2,58 +2,86 @@ import assert from 'assert'
 import { streamRecording } from '../../src'
 import { sleep } from '../../src/utils/sleep'
 import { SinonSpy } from 'sinon'
+import { JsonMessage } from '@dapia-project/data-converter'
 import sinon = require('sinon')
 
 describe('streamRecording', () => {
   let spy: SinonSpy
+
   beforeEach(() => {
     spy = sinon.spy(async () => {})
   })
 
-  it('calls callback in delay', async () => {
+  it('delays callback', async () => {
     const recordingSize = 8
-    const delayBetweenMessages = 100
-    let content = ''
+    const messages: JsonMessage[] = []
 
     for (let i = 0; i < recordingSize; i++) {
-      content += `MSG,3,3,5022202,3b7b96,5022202,2022/07/02,12:47:23.000,2022/07/02,12:47:23.${
-        i * delayBetweenMessages
-      },DRAG66,1850.0,120.0,311.2759,43.4091,1.72415,128.0,,,,,\n`
+      messages.push({ timestamp: 1000000 + i })
     }
 
-    const recordTest = content
-
-    streamRecording('test.sbs', recordTest, spy, undefined, undefined).then()
+    streamRecording(
+      {
+        name: 'recording.csv',
+        messages,
+      },
+      spy
+    ).then()
     sinon.assert.notCalled(spy)
 
     await sleep(1)
     sinon.assert.calledOnce(spy)
 
     for (let i = 1; i < recordingSize; i++) {
-      await sleep(delayBetweenMessages)
+      await sleep(1001)
+      sinon.assert.callCount(spy, i + 1)
+    }
+  })
+
+  it('applies speed options to delay', async () => {
+    const recordingSize = 8
+    const messages: JsonMessage[] = []
+
+    for (let i = 0; i < recordingSize; i++) {
+      messages.push({ timestamp: 1000000 + i })
+    }
+
+    streamRecording(
+      {
+        name: 'recording.csv',
+        messages,
+      },
+      spy,
+      { speed: 2 }
+    ).then()
+    sinon.assert.notCalled(spy)
+
+    await sleep(1)
+    sinon.assert.calledOnce(spy)
+
+    for (let i = 1; i < recordingSize; i++) {
+      await sleep(501)
       sinon.assert.callCount(spy, i + 1)
     }
   })
 
   it('calls callback with message', async () => {
-    const recordingSize = 8
-    const delayBetweenMessages = 100
-    let content: string[] = []
-
-    for (let i = 0; i < recordingSize; i++) {
-      content.push(
-        `MSG,3,3,5022202,3b7b96,5022202,2022/07/02,12:47:23.000,2022/07/02,12:47:23.${
-          i * delayBetweenMessages
-        },DRAG66,1850.0,120.0,311.2759,43.4091,1.72415,128.0,,,,,`
-      )
-    }
-
-    const recordTest = content.join('\n')
-
-    await streamRecording('test.sbs', recordTest, spy, undefined, undefined)
+    const messages = [
+      { timestamp: 1000000 },
+      { timestamp: 1000002 },
+      { timestamp: 1000003 },
+      { timestamp: 1000004 },
+    ]
+    await streamRecording(
+      {
+        name: 'recording.csv',
+        messages: messages,
+      },
+      spy
+    )
     assert.deepStrictEqual(
       spy.getCalls().map((call) => call.args),
-      content.map((message) => [message])
+      messages.map((message) => [message])
     )
   })
 })
