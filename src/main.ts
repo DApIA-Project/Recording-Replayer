@@ -1,18 +1,8 @@
 #!/usr/bin/env node
-import { streamRecording } from './recording-stream/streamRecording'
 import commandLineArgs from 'command-line-args'
 import axios from 'axios'
 import { ApiResponse, StreamCallback } from './types'
-import { buildCsvJsonRecording } from './utils/buildCsvJsonRecording'
-
-async function streamRecordingWrapper(
-  callback: StreamCallback,
-  file: string,
-  speed: number
-) {
-  const recording = await buildCsvJsonRecording(file)
-  await streamRecording(recording, callback, { speed })
-}
+import { streamFile } from './streamFile'
 
 try {
   const { file, url, speed } = commandLineArgs([
@@ -44,7 +34,7 @@ try {
     callback = async (message) => console.log(message)
   }
 
-  if (callback) streamRecordingWrapper(callback, file, speed).then()
+  if (callback) streamFile(callback, file, speed).then()
 } catch (e: any) {
   console.error(e.message)
   process.exit(1)
