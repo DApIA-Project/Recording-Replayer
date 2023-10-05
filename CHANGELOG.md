@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file.
 
+## [Unreleased](https://github.com/DApIA-Project/Recording-Streamer/compare/v2.2.0...main)
+
+### Info
+
+### Added
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
 ## [v2.2.0](https://github.com/DApIA-Project/Recording-Streamer/compare/v2.1.1...v2.2.0)
 
 ### Added
