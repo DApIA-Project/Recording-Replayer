@@ -25,7 +25,7 @@ try {
         return {
           data: {
             message,
-            error: 'error_from_server',
+            error: `${e}`,
           },
         }
       }
