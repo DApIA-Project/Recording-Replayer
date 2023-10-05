@@ -2,19 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
-## [Unreleased](https://github.com/DApIA-Project/Recording-Streamer/compare/v1.1.0...main)
-
-### Info
+## [v2.2.0](https://github.com/DApIA-Project/Recording-Streamer/compare/v2.1.1...v2.2.0)
 
 ### Added
 
-### Changed
-
-### Deprecated
-
-### Removed
-
-### Fixed
+- Add recordings examples in `./examples`
+- Use now `@dapia-project/data-converter` version `3.0.0`
 
 ## [v2.1.1](https://github.com/DApIA-Project/Recording-Streamer/compare/v2.1.0...v2.1.1)
 

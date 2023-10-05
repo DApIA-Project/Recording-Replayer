@@ -1,6 +1,6 @@
 {
   "name": "@dapia-project/recording-streamer",
-  "version": "2.1.1",
+  "version": "2.2.0",
   "description": "Lib that replays a recording according to time",
   "main": "dist/main.js",
   "types": "dist/src/types.d.ts",
