@@ -1,6 +1,6 @@
 {
   "name": "@dapia-project/recording-streamer",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "description": "Lib that replays a recording according to time",
   "main": "dist/main.js",
   "types": "dist/src/types.d.ts",
@@ -17,7 +17,7 @@
     "test": "ts-mocha --config .mocharc-ts.json",
     "test:coverage": "nyc --reporter=html ts-mocha -p ./test/tsconfig.json 'test/*.test.ts'",
     "prettier-write": "prettier --write .",
-    "start": "ts-node ./src/main.ts"
+    "start": "ts-node ./src/main.ts --file \"./temp/2022_07_toulouse_SAMUCF_1h.csv\" --url \"http://127.0.0.1:3033/classifier\" --speed 32"
   },
   "repository": {
     "type": "git",

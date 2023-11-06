@@ -6,7 +6,7 @@ export type Recording = {
 }
 
 export type ApiResponse = {
-  data: { message: JsonMessage; prediction?: string; error?: string }
+  data: { message: JsonMessage; prediction?: string; truth?: string; error?: string }
 }
 
 export type AxiosCallback = (message: JsonMessage) => Promise<ApiResponse>

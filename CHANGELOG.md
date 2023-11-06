@@ -16,6 +16,12 @@ All notable changes to this project will be documented in this file.
 
 ### Fixed
 
+## [v2.2.1](https://github.com/DApIA-Project/Recording-Streamer/compare/v2.2.0...v2.2.1)
+
+### Changed
+
+- Change elements that we received : from `prediction, error` to `message, prediction, error and truth`
+
 ## [v2.2.0](https://github.com/DApIA-Project/Recording-Streamer/compare/v2.1.1...v2.2.0)
 
 ### Added
