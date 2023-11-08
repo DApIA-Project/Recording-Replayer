@@ -1,4 +1,4 @@
-timestamp,icao24,latitude,longitude,velocity,heading,vertrate,callsign,onground,alert,spi,squawk,altitude,geoaltitude,lastposupdate,lastcontact,hour
+timestamp,icao24,latitude,longitude,groundspeed,track,vertical_rate,callsign,onground,alert,spi,squawk,altitude,geoaltitude,last_position,lastcontact,hour
 1656766055,39ac45,43.60913,1.22415,120,311.3,128,SAMUCF,False,False,False,NaN,1850.0,1850,,,
 1656766056,39ac45,43.60913,1.22415,120,311.3,128,SAMUCF,False,False,False,NaN,1850.0,1850,,,
 1656766057,39ac45,43.60913,1.22415,120,311.3,128,SAMUCF,False,False,False,NaN,1850.0,1850,,,
