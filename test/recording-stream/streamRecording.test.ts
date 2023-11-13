@@ -17,7 +17,7 @@ describe('streamRecording', () => {
     const messages: JsonMessage[] = []
 
     for (let i = 0; i < recordingSize; i++) {
-      messages.push({ timestamp: 1000000 + i })
+      messages.push({ timestamp: 1000000 + i , icao24 : '39ac45'})
     }
 
     streamRecording(
@@ -43,7 +43,7 @@ describe('streamRecording', () => {
     const messages: JsonMessage[] = []
 
     for (let i = 0; i < recordingSize; i++) {
-      messages.push({ timestamp: 1000000 + i })
+      messages.push({ timestamp: 1000000 + i , icao24 : '39ac45'})
     }
 
     streamRecording(
@@ -67,10 +67,10 @@ describe('streamRecording', () => {
 
   it('calls callback with message', async () => {
     const messages = [
-      { timestamp: 1000000 },
-      { timestamp: 1000002 },
-      { timestamp: 1000003 },
-      { timestamp: 1000004 },
+      { timestamp: 1000000 , icao24 : '39ac45'},
+      { timestamp: 1000002 , icao24 : '39ac45'},
+      { timestamp: 1000003 , icao24 : '39ac45'},
+      { timestamp: 1000004 , icao24 : '39ac45'},
     ]
     await streamRecording(
       {
@@ -81,7 +81,7 @@ describe('streamRecording', () => {
     )
     assert.deepStrictEqual(
       spy.getCalls().map((call) => call.args),
-      messages.map((message) => [message])
+      messages.map((message) => [[message]])
     )
   })
 })

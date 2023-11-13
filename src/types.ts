@@ -6,11 +6,11 @@ export type Recording = {
 }
 
 export type ApiResponse = {
-  data: { message: JsonMessage; prediction?: string; truth?: string; error?: string }
+  data: { message: JsonMessage[]; prediction?: string; truth?: string; error?: string }
 }
 
-export type AxiosCallback = (message: JsonMessage) => Promise<ApiResponse>
+export type AxiosCallback = (message: JsonMessage[]) => Promise<ApiResponse>
 
-export type ConsoleCallback = (message: JsonMessage) => Promise<void>
+export type ConsoleCallback = (message: JsonMessage[]) => Promise<void>
 
 export type StreamCallback = AxiosCallback | ConsoleCallback
