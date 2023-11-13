@@ -2,8 +2,8 @@
 
 # Recording-Streamer
 
-Allows you to sort the messages of a recording according to time as well as to send a message stream according to time
-
+Allows you to sort the messages of a recording according to time as well as to send a table message stream according to time.
+In the case where messages have the same timestamp and the same icao, the messages are grouped in a table
 ## Setup
 
 ### Via NPM
@@ -21,7 +21,7 @@ In your `package.json`, add the following:
 ```json
 {
   "dependencies": {
-    "@dapia-project/recording-streamer": "^2.2.1"
+    "@dapia-project/recording-streamer": "^2.3.0"
   }
 }
 ```

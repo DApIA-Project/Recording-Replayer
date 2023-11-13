@@ -16,6 +16,17 @@ All notable changes to this project will be documented in this file.
 
 ### Fixed
 
+## [v2.3.0](https://github.com/DApIA-Project/Recording-Streamer/compare/v2.2.1...v2.3.0)
+
+### Added
+
+- Added function `groupMessagesByIcaoAndTimestamp` grouping messages according to their timestamp and icao.
+
+### Changed
+
+- Changed the way messages are sent. We go from sending a message to sending a message board.
+
+
 ## [v2.2.1](https://github.com/DApIA-Project/Recording-Streamer/compare/v2.2.0...v2.2.1)
 
 ### Changed
