@@ -30,7 +30,7 @@ export async function streamRecording(
      const {message, prediction, error, truth } = result.data
       if (error) console.log(error)
       else if (prediction == truth) console.log("The flight is legit, it\'s a "+prediction)
-      else console.log("ALERT ! The flight pretend to be "+truth+" but is a "+prediction + " : "+ message)
+      else console.log("ALERT ! The flight pretend to be "+truth+" but is a "+prediction)
 
 
 
