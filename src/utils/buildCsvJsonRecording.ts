@@ -14,7 +14,7 @@ export async function buildCsvJsonRecording(file: string): Promise<Recording> {
       recording.messages = csvToJson(buffer.toString())
       break
     case 'sbs':
-      recording.messages = csvToJson(sbsToCsv(buffer.toString()))
+      recording.messages = csvToJson(sbsToCsv(buffer.toString(),true))
       break
     default:
       throw new Error('File must be have .csv or .sbs extension')
