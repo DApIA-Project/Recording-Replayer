@@ -16,6 +16,17 @@ All notable changes to this project will be documented in this file.
 
 ### Fixed
 
+## [v2.4.0](https://github.com/DApIA-Project/Recording-Streamer/compare/v2.3.1...v2.4.0)
+
+### Added
+
+- You can now transmit a .csv file with the drone header presented in the Data-Converter README here:
+  https://github.com/DApIA-Project/Data-Converter/blob/main/README.md
+
+### Fixed
+
+- Modify version of  library Data-Converter and modify method names.
+
 ## [v2.3.1](https://github.com/DApIA-Project/Recording-Streamer/compare/v2.3.0...v2.3.1)
 
 ### Fixed

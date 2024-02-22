@@ -21,7 +21,7 @@ In your `package.json`, add the following:
 ```json
 {
   "dependencies": {
-    "@dapia-project/recording-streamer": "^2.3.1"
+    "@dapia-project/recording-streamer": "^2.4.0"
   }
 }
 ```
