@@ -31,7 +31,7 @@ All notable changes to this project will be documented in this file.
 
 ### Fixed
 
-- Modify version of  library Data-Converter
+- Modify version of  library Data-Converter to v4.0.0
 
 ## [v2.3.0](https://github.com/DApIA-Project/Recording-Streamer/compare/v2.2.1...v2.3.0)
 
