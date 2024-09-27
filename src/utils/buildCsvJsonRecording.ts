@@ -3,7 +3,6 @@ import fs from 'fs'
 import { openskyCsvToJson, sbsToOpenskyCsv } from '@dapia-project/data-converter/dist/src'
 import { getExtension } from './getExtension'
 import { getDataType } from "@dapia-project/data-converter/dist/src/utils/utils";
-import { droneCsvToJson } from "@dapia-project/data-converter/dist/src/droneCsvToJson";
 import { droneCsvToOpenskyCsv } from "@dapia-project/data-converter/dist/src/droneCsvToOpenskyCsv";
 
 export async function buildCsvJsonRecording(file: string): Promise<Recording> {
