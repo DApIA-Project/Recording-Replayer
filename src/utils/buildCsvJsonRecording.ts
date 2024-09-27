@@ -22,7 +22,7 @@ export async function buildCsvJsonRecording(file: string): Promise<Recording> {
 
       break
     case 'sbs':
-      recording.messages = openskyCsvToJson(sbsToOpenskyCsv(buffer.toString(),true))
+      recording.messages = openskyCsvToJson(sbsToOpenskyCsv(buffer.toString(),{saveExtraField: true}))
       break
     default:
       throw new Error('File must be have .csv or .sbs extension')
